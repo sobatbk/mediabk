@@ -129,4 +129,6 @@ body.imm #exitFs{display:inline-flex}
 .doc .act{display:flex;flex-wrap:wrap;gap:.7rem}
 .btn.gold{background:linear-gradient(135deg,#f7e08c,#d4a63a);color:var(--ink)}
 @media(max-width:760px){.doc{text-align:left}.doc .act{width:100%}.doc .act .btn{flex:1}}
+.updbox{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem .9rem;margin-top:1rem}.updbox small{font-size:.85rem;opacity:.85;flex:1 1 12rem}
+@media(max-width:760px){.updbox{justify-content:center;text-align:center}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
