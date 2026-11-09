@@ -40,7 +40,7 @@
    <button class="cta" data-go="media"><span class="ico">🎮</span><span><b>Mulai Jelajahi Media</b><small>Pilih media layanan BK</small></span></button>
    <div class="tiles">
     <button class="tile" data-go="dokumen"><span class="ico">📁</span><b>Dokumen</b><small>Unduh perangkat layanan BK</small></button>
-    <button class="tile" data-go="cara"><span class="ico">📖</span><b>Cara Penggunaan</b><small>Panduan singkat empat langkah</small></button>
+    <button class="tile" data-go="cara"><span class="ico">📖</span><b>Cara Penggunaan</b><small>Panduan Singkat</small></button>
     <button class="tile" data-go="pembuat"><span class="ico">👨‍🏫</span><b>Tentang Pembuat</b><small>Profil pengembang portal</small></button>
    </div>
    <div class="updbox"><button class="btn sun" id="upd" type="button">🔄 Update Data</button><small>Tekan jika media atau dokumen terbaru belum muncul.</small></div>
@@ -52,8 +52,8 @@
   <p class="sub">Ketuk salah satu kartu untuk membuka media.</p>
   <div class="bar"><input class="search" id="q" type="search" placeholder="🔍 Cari media..." aria-label="Cari media"><div class="row" id="chips"></div></div>
   <div class="bar" id="jbar"><span>🎓 Kelas:</span><div class="row" id="jchips"></div></div>
-  <div id="recent" hidden><h3 class="rt">🕒 Terakhir dibuka</h3><div class="grid" id="rgrid"></div><h3 class="rt" style="margin-top:2rem">📚 Semua media</h3></div>
-  <div class="grid" id="grid"></div>
+  <div id="msec"><h3 class="rt" id="mhead">📚 Media Layanan</h3><div class="grid" id="grid"></div></div>
+  <div id="asec" hidden><h3 class="rt">💻 Aplikasi</h3><div class="grid" id="agrid"></div></div>
   <div id="gsec" hidden><h3 class="rt">🕹️ Games</h3><div class="grid" id="ggrid"></div></div>
  </section>
 
@@ -68,14 +68,16 @@
 
  <section class="view" id="v-cara" hidden>
   <h2 class="t">📖 Cara Penggunaan</h2>
-  <p class="sub">Mudah kok, hanya empat langkah.</p>
+  <p class="sub">Mudah kok, hanya enam langkah.</p>
   <ol class="steps">
-   <li><b>Tekan Mulai</b>Dari beranda, tekan tombol Mulai untuk masuk ke daftar media.</li>
-   <li><b>Pilih media</b>Ketik nama media di kolom cari, atau pilih kategori: Pribadi, Sosial, Belajar, atau Karier.</li>
-   <li><b>Buka kartunya</b>Ketuk kartu media. Media terbuka di dalam portal atau di tab baru, sesuai pengaturan tiap media.</li>
-   <li><b>Atur tampilan</b>Pakai tombol Zoom Out dan Zoom In untuk mengubah ukuran, dan tombol ⛶ untuk layar penuh.</li>
+   <li><b>Mulai dari beranda</b>Tekan Mulai Jelajahi Media untuk masuk ke daftar. Menu Dokumen, Cara Penggunaan, dan Tentang Pembuat juga ada di beranda dan di bagian atas layar.</li>
+   <li><b>Pilih bagian</b>Menu Media berisi tiga bagian berurutan: Media Layanan, Aplikasi, dan Games. Ketik nama di kolom cari, atau saring berdasarkan kategori (Pribadi, Sosial, Belajar, Karier) dan kelas. Aplikasi dan Games tampil saat kategori Semua.</li>
+   <li><b>Baca label di kartu</b>Pojok kartu menunjukkan peruntukan: Untuk Siswa, Untuk Guru, atau Guru &amp; Siswa. Pilih yang sesuai dengan kebutuhan Anda.</li>
+   <li><b>Buka kartunya</b>Ketuk kartu untuk membuka. Sebagian terbuka di dalam portal, sebagian lagi di tab baru. Jika layar kosong, tekan tombol ↗ Tab baru. Tombol ⬅ Kembali membawa Anda ke daftar.</li>
+   <li><b>Unduh dokumen</b>Di menu Dokumen, pilih jenis dan jenjang, lalu tekan 👁 Lihat untuk pratinjau atau Unduh untuk menyimpan berkasnya.</li>
+   <li><b>Atur tampilan</b>Zoom Out dan Zoom In mengubah ukuran portal, ⛶ untuk layar penuh, 🔊 untuk efek suara, dan maskot bisa disembunyikan. Jika data terbaru belum muncul, tekan 🔄 Update Data di beranda.</li>
   </ol>
-  <div class="tip">💡 <b>Untuk layar IFP:</b> tekan Zoom In agar tulisan terbaca jelas dari belakang kelas, lalu tekan ⛶ supaya portal memenuhi layar. Di dalam media, tombol zoom memperbesar atau memperkecil isi media saja.</div>
+  <div class="tip">💡 <b>Untuk layar IFP:</b> tekan Zoom In agar tulisan terbaca jelas dari belakang kelas, lalu tekan ⛶ supaya portal memenuhi layar. Di dalam aplikasi atau game, tombol zoom memperbesar atau memperkecil isinya saja.</div>
  </section>
 
  <section class="view about" id="v-pembuat" hidden>
@@ -117,6 +119,7 @@
  <div class="hint">Layar kosong? Beberapa situs tidak bisa dibuka di dalam portal. Tekan Tab baru.</div>
 </div>
 <div id="toast" hidden></div>
+<button class="btn totop" id="toTop" type="button" aria-label="Kembali ke atas" title="Kembali ke atas" hidden>⬆️</button>
 <button class="btn sm blue" id="exitFs" aria-label="Keluar layar penuh">✕ Keluar</button>
 <aside id="mv" aria-label="Maskot Sobat BK">
  <div class="mv-b" id="mvB" role="status" aria-live="polite">
@@ -126,6 +129,25 @@
  <button class="mv-m" id="mvM" aria-label="Maskot Sobat BK. Ketuk untuk mendengar sapaan."><span class="glow"></span><img id="mvI" alt="Maskot Sobat BK"></button>
 </aside>
 <button class="mv-fab" id="mvF" aria-label="Tampilkan maskot" hidden><img id="mvI2" alt=""></button>
+
+<div id="welcome" role="dialog" aria-modal="true" aria-labelledby="wT">
+ <div class="w-sp" aria-hidden="true">
+  <svg class="sun" viewBox="-60 -60 120 120"><circle class="ring" r="48" fill="none" stroke="#f39a2e" stroke-width="8" stroke-dasharray="7 15" stroke-linecap="round"/><circle r="34" fill="#ffd23f" stroke="#14315c" stroke-width="4"/><circle cx="-11" cy="-5" r="4" fill="#14315c"/><circle cx="11" cy="-5" r="4" fill="#14315c"/><path d="M-13 8q13 13 26 0" fill="none" stroke="#14315c" stroke-width="4" stroke-linecap="round"/><circle cx="-21" cy="7" r="5" fill="#ff7aa8" opacity=".6"/><circle cx="21" cy="7" r="5" fill="#ff7aa8" opacity=".6"/></svg>
+  <i class="cloud c1"></i><i class="cloud c2"></i><i class="cloud c3"></i>
+  <svg class="hills" viewBox="0 0 1200 160" preserveAspectRatio="none"><path d="M0 90Q200 10 420 80T820 70T1200 60V160H0Z" fill="#8fdc8a" stroke="#14315c" stroke-width="4"/><path d="M0 130Q260 80 560 120T1200 110V160H0Z" fill="#4cc36b" stroke="#14315c" stroke-width="4"/></svg>
+ </div>
+ <div class="w-card">
+  <div class="w-logo"><img id="wImg" alt="Logo Sobat BK"></div>
+  <p class="w-k">Portal Layanan Bimbingan dan Konseling</p>
+  <h2 id="wT">Selamat Datang</h2>
+  <p class="w-n">di Media Sobat BK</p>
+  <p class="w-g" id="wG"></p>
+  <ul class="w-p"><li>🎮 Media interaktif</li><li>💻 Aplikasi BK</li><li>🕹️ Games</li><li>📁 Dokumen</li></ul>
+  <p class="w-free">🎁 Semua isi aplikasi ini GRATIS</p>
+  <div><button class="w-b" id="wGo" type="button">✨ Masuk ke Beranda</button></div>
+  <p class="w-by">👨‍🏫 Pembuat: <b>Muhammad Hasratul, S.Pd.,Gr.,M.M</b></p>
+ </div>
+</div>
 
 <script src="script.obfuscated.js"></script>
 </body>
