@@ -1,0 +1,61 @@
+/* ===== Efek tambahan Media Sobat BK =====
+   Dimuat SETELAH style.css. Berisi: transisi halaman, kartu hidup (miring 3D + kilau + muncul berurutan),
+   tema otomatis pagi/siang/sore/malam, dan kanvas konfeti. Untuk mematikan, hapus tautan fx.css dan fx.js di index.html. */
+
+/* ---------- 1. Transisi halaman ---------- */
+.view{animation:fxViewIn .5s cubic-bezier(.2,.85,.25,1)}
+@keyframes fxViewIn{from{opacity:0;transform:translateY(1rem) scale(.99)}}
+#viewer:not([hidden]){animation:fxViewer .42s cubic-bezier(.2,.85,.25,1)}
+@keyframes fxViewer{from{opacity:0;transform:translateY(2.5rem) scale(.98)}}
+
+/* ---------- 2. Kartu hidup ---------- */
+.card,.mbox{position:relative;transition:transform .3s cubic-bezier(.2,.8,.2,1),box-shadow .2s}
+.card:after,.mbox:after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .25s;
+ background:radial-gradient(circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.6),rgba(255,255,255,0) 55%)}
+.card:active:after,.mbox:active:after{opacity:1}
+@media(hover:hover) and (pointer:fine){
+ .card:hover:after,.mbox:hover:after{opacity:1}
+ .card:hover,.mbox:hover{transform:perspective(800px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(-.35rem);transition:transform .1s linear,box-shadow .2s}
+}
+/* muncul berurutan, hanya saat halaman dibuka (bukan tiap mengetik di kolom cari) */
+.fx-enter .card,.fx-enter .mbox,.fx-enter .doc{animation:fxCardIn .55s cubic-bezier(.2,.9,.3,1.1) backwards;animation-delay:calc(var(--i,0)*55ms + 120ms)}
+@keyframes fxCardIn{from{opacity:0;transform:translateY(1.6rem) scale(.92)}}
+
+/* ---------- 4. Konfeti ---------- */
+#fxConf{position:fixed;inset:0;width:100%;height:100%;z-index:90;pointer-events:none}
+
+/* ---------- 3. Tema otomatis ---------- */
+.scene .moon,.scene .stars{display:none}
+.scene .moon{position:absolute;top:6.5rem;right:6%;width:5.5rem;height:5.5rem;border-radius:50%;background:#fff6d0;border:4px solid #0a1230;
+ box-shadow:inset -1.1rem -.5rem 0 #ead98e,0 0 2.5rem 1rem rgba(255,246,200,.3)}
+.scene .moon:before,.scene .moon:after{content:"";position:absolute;border-radius:50%;background:#e6d68a;border:3px solid rgba(10,18,48,.55)}
+.scene .moon:before{width:1.2rem;height:1.2rem;left:22%;top:26%}.scene .moon:after{width:.8rem;height:.8rem;left:52%;top:56%}
+.scene .stars{position:absolute;inset:0 0 35% 0}
+.scene .stars b{position:absolute;width:4px;height:4px;border-radius:50%;background:#fff;animation:fxTw 3s ease-in-out infinite}
+@keyframes fxTw{50%{opacity:.25;transform:scale(.6)}}
+@media(max-width:760px){.scene .moon{width:3.6rem;height:3.6rem;top:4.5rem}}
+
+/* pagi: hangat keemasan */
+html[data-tm=pagi] body{background:linear-gradient(#ffe6bf,#d9f1ff 55%,#d6f4cf)}
+html[data-tm=pagi] .scene .sun{filter:saturate(1.15) brightness(1.03)}
+html[data-tm=pagi] .cloud,html[data-tm=pagi] .cloud:before,html[data-tm=pagi] .cloud:after{background:#fffaf0}
+/* sore: jingga */
+html[data-tm=sore] body{background:linear-gradient(#ff9f7a,#ffd2a0 42%,#ffeccb 72%,#d9eec0)}
+html[data-tm=sore] .scene .sun{filter:hue-rotate(-14deg) saturate(1.4)}
+html[data-tm=sore] .cloud,html[data-tm=sore] .cloud:before,html[data-tm=sore] .cloud:after{background:#fff0e4}
+html[data-tm=sore] .cloud{box-shadow:0 .35rem 0 #f0b99a}
+html[data-tm=sore] .hills{filter:sepia(.25) saturate(1.15)}
+/* malam: mode gelap */
+html[data-tm=malam] body{background:linear-gradient(#0c1737,#1b2f63 58%,#26457d)}
+html[data-tm=malam] .scene .sun{display:none}
+html[data-tm=malam] .scene .moon,html[data-tm=malam] .scene .stars{display:block}
+html[data-tm=malam] .cloud,html[data-tm=malam] .cloud:before,html[data-tm=malam] .cloud:after{background:#5b73a8}
+html[data-tm=malam] .cloud{box-shadow:0 .35rem 0 #3a4d7f;opacity:.75}
+html[data-tm=malam] .hills{filter:brightness(.42) saturate(.9)}
+html[data-tm=malam] header{background:#14244a;border-bottom-color:#0a1230}
+html[data-tm=malam] header .brand{color:#fff}
+html[data-tm=malam] .hero h1,html[data-tm=malam] .hero .lead,html[data-tm=malam] .hero .pts,
+html[data-tm=malam] h2.t,html[data-tm=malam] .sub,html[data-tm=malam] .dcount,html[data-tm=malam] #jbar,
+html[data-tm=malam] .about h2,html[data-tm=malam] .bio,html[data-tm=malam] .updbox small{color:#eef3ff}
+html[data-tm=malam] .hero h1{text-shadow:.15rem .15rem 0 rgba(0,0,0,.45)}
+html[data-tm=malam] .badge:before{box-shadow:0 .6rem 0 #0a1230}
