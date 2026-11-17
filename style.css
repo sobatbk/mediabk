@@ -234,3 +234,92 @@ body.imm #exitFs{display:inline-flex}
 .rtip .ico{flex:none;font-size:1.8rem;line-height:1}
 .rtip .row{margin-top:.7rem}
 @media(max-width:560px){.tip.rtip{flex-direction:column;align-items:center;text-align:center}}
+
+/* ===== Menu awal: Bimbingan Kelompok di Ruang BK (diorama karton 3D) ===== */
+#welcome{--px:0;--py:0;font-size:clamp(15px,min(1.5vw,2.6vh),64px);display:grid;place-items:start center;padding:3.4em 1em 1em;background:#cdeee6}
+#welcome .w-sp{display:none}
+.w-stage{position:fixed;inset:0;overflow:hidden;pointer-events:none;background:#cdeee6}
+.w-cam{position:absolute;inset:0;transform-origin:50% 100%;animation:wDolly 24s ease-in-out infinite alternate}
+.w-lay{position:absolute;left:-4%;top:-4%;width:108%;height:108%;transition:transform .25s ease-out}
+.w-back{transform:translate3d(calc(var(--px)*-8px),calc(var(--py)*-4px),0)}
+.w-mid{transform:translate3d(calc(var(--px)*-18px),calc(var(--py)*-8px),0);filter:drop-shadow(0 .4em 0 rgba(20,49,92,.22)) drop-shadow(0 1em 1em rgba(20,49,92,.3))}
+.w-front{transform:translate3d(calc(var(--px)*-34px),calc(var(--py)*-14px),0);filter:drop-shadow(0 .5em 0 rgba(20,49,92,.2)) drop-shadow(0 1.2em 1.2em rgba(20,49,92,.35))}
+.w-vig{position:absolute;inset:0;z-index:2;background:radial-gradient(ellipse at 50% 70%,transparent 50%,rgba(20,49,92,.36))}
+.w-cur{position:absolute;top:0;bottom:0;z-index:4;width:51%;background:repeating-linear-gradient(90deg,#e8574a 0 2.2em,#cf4538 2.2em 4.4em);box-shadow:0 0 2em rgba(0,0,0,.4);animation:wCur 1.7s .35s cubic-bezier(.7,0,.2,1) both}
+.w-cur.l{left:0;transform:translateX(-102%)}.w-cur.r{right:0;transform:translateX(102%)}
+.w-stage:after{content:"";position:absolute;inset:0;z-index:5;border:.6em solid #c58b4e;box-shadow:inset 0 0 0 .15em var(--ink),inset 0 1.2em 1.8em -.5em rgba(20,49,92,.5),inset 0 0 4em rgba(20,49,92,.3)}
+.w-back .ray{opacity:.16;animation:wRay 6s ease-in-out infinite}.w-back .cl{animation:wCloud 22s linear infinite alternate}
+.w-mid .nod{transform-box:fill-box;transform-origin:50% 100%;animation:wNod 2.6s ease-in-out infinite}
+.w-mid .bk{transform-box:fill-box;transform-origin:50% 50%;animation:wBlink 4s infinite}
+.w-mid .rs{transform-box:fill-box;transform-origin:50% 100%;animation:wRaise 1.4s ease-in-out infinite}
+.w-mid .tp{transform-origin:46px -88px;animation:wPoint 3s ease-in-out infinite}
+.w-mid .bb{transform-box:fill-box;transform-origin:50% 100%;opacity:0;animation:wBub 12s infinite}.w-mid .bb.t{opacity:1}
+.w-mid .ht{animation:wHeart 6s ease-out infinite}
+.w-front .fl{transform-box:fill-box;transform-origin:50% 0;animation:wSway 3.2s ease-in-out infinite alternate}.w-front .du{animation:wDust 7s linear infinite}
+@keyframes wDolly{to{transform:scale(1.06)}}@keyframes wCur{from{transform:none}}
+@keyframes wRay{50%{opacity:.28}}@keyframes wCloud{to{transform:translateX(150px)}}@keyframes wNod{50%{transform:translateY(4px) rotate(2deg)}}
+@keyframes wBlink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}@keyframes wRaise{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(8deg)}}
+@keyframes wPoint{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(10deg)}}
+@keyframes wBub{0%{opacity:0;transform:scale(.6)}4%{opacity:1;transform:scale(1.06)}7%,28%{opacity:1;transform:scale(1)}33%,100%{opacity:0;transform:scale(.6)}}
+@keyframes wHeart{from{transform:translateY(0) scale(.6);opacity:0}20%{opacity:1}to{transform:translateY(-150px) scale(1.1);opacity:0}}
+@keyframes wSway{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}@keyframes wDust{from{transform:translate(0,0);opacity:0}20%{opacity:.9}to{transform:translate(30px,-130px);opacity:0}}
+@keyframes bkDrop{from{transform:translateY(-130%);opacity:0}}@keyframes bkSway{from{transform:rotate(-.8deg)}to{transform:rotate(.8deg)}}@keyframes bkBtn{50%{transform:translateY(-.15em) scale(1.05)}}
+/* Kartu sambutan: papan nama pintu Ruang BK yang tergantung */
+.bk-card{position:relative;z-index:6;width:min(94vw,34em);padding:1.1em 1.3em 1em;text-align:center;color:var(--ink);background:#fff8e8;border:.18em solid var(--ink);border-radius:1.2em;box-shadow:0 .35em 0 var(--ink),0 1em 1.8em rgba(20,49,92,.38);transform-origin:50% -3.4em;animation:bkDrop .9s 1.4s cubic-bezier(.3,1.4,.5,1) both,bkSway 7s 2.4s ease-in-out infinite alternate}
+.bk-card:before,.bk-card:after{content:"";position:absolute;bottom:100%;width:.16em;height:3.4em;background:var(--ink)}
+.bk-card:before{left:18%}.bk-card:after{right:18%}
+.bk-top{display:flex;align-items:center;gap:1em;text-align:left}
+.bk-logo{flex:none;display:grid;place-items:center;width:4.6em;height:4.6em;background:var(--sun);border:.14em solid var(--ink);border-radius:50%;box-shadow:0 .2em 0 var(--ink)}.bk-logo img{width:72%;animation:bob 3.2s ease-in-out infinite}
+.bk-k{display:inline-block;margin-bottom:.3em;padding:.15em .7em;font:700 .75em Fredoka,sans-serif;background:#d9a566;border:.12em solid var(--ink);border-radius:999px}
+.bk-card h2{font:700 min(2.3em,8.5vw)/1 Fredoka,"Trebuchet MS",sans-serif;text-shadow:.07em .07em 0 var(--sun),.14em .14em 0 var(--ink)}
+.bk-n{font:700 1.1em Fredoka,sans-serif;color:var(--blue)}
+.bk-g{margin:.7em 0 .5em;font-size:.95em}
+.bk-p{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:.5em;margin-bottom:.8em}
+.bk-p li{padding:.3em .8em;font-size:.82em;border:.12em solid var(--ink);box-shadow:0 .15em 0 rgba(20,49,92,.3);background:#fff3a3;transform:rotate(-2deg)}
+.bk-p li:nth-child(2){background:#ffc9dc;transform:rotate(1.5deg)}.bk-p li:nth-child(3){background:#c8f0d2;transform:rotate(-1deg)}.bk-p li:nth-child(4){background:#cfe6ff;transform:rotate(2deg)}
+.bk-act{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.7em}
+.bk-free{padding:.35em 1em;font:700 .95em Fredoka,sans-serif;background:var(--green);border:.14em solid var(--ink);border-radius:999px;box-shadow:0 .2em 0 var(--ink)}
+.bk-b{min-height:2.8em;padding:.4em 1.5em;font:700 1.2em Fredoka,sans-serif;color:var(--ink);cursor:pointer;background:var(--orange);border:.14em solid var(--ink);border-radius:999px;box-shadow:0 .25em 0 var(--ink);animation:bkBtn 2.2s 2.6s ease-in-out infinite}
+.bk-b:active{transform:translateY(.2em);box-shadow:0 .03em 0 var(--ink)}
+.bk-by{margin-top:.7em;font-size:.8em}
+@media(max-width:600px){.bk-p{display:none}.bk-k{font-size:.68em}}
+@media(max-height:520px){#welcome{padding-top:2.2em}.bk-p,.bk-g{display:none}}
+
+/* ===== v3: panel karton menyatu dengan diorama, bisa diminimize; layout HP portrait ===== */
+@media(max-aspect-ratio:1/1){.w-lay{left:0;top:auto;bottom:0;width:100%;height:112.5vw}.w-back{-webkit-mask-image:linear-gradient(transparent,#000 14%);mask-image:linear-gradient(transparent,#000 14%)}}
+.bk-wrap{position:relative;z-index:6;--ty:0%;transform:translate3d(calc(var(--px)*-10px),calc(var(--py)*-5px + var(--ty)),0);transition:transform .7s cubic-bezier(.5,-.2,.3,1.15),opacity .4s,visibility 0s}
+#welcome.min .bk-wrap{--ty:-145%;opacity:0;visibility:hidden;pointer-events:none;transition:transform .6s cubic-bezier(.6,-.3,.4,1),opacity .4s .2s,visibility 0s .6s}
+.bk-card{width:min(94vw,34em);padding:.55em;background:repeating-linear-gradient(90deg,#d9a566 0 .5em,#cb9556 .5em 1em);border:.18em solid var(--ink);border-radius:1.3em;box-shadow:0 .3em 0 #b9793d,0 .6em 0 var(--ink),0 1.2em 1.8em rgba(20,49,92,.4)}
+.bk-card:before,.bk-card:after{width:.22em;height:3.6em;background:repeating-linear-gradient(#c58b4e 0 .3em,#8a5a2b .3em .45em);border:.05em solid var(--ink)}
+.bk-in{padding:.9em 1.2em .8em;background:#fff8e8;border:.14em solid var(--ink);border-radius:.9em;box-shadow:inset 0 .2em 0 rgba(20,49,92,.08);overflow-wrap:anywhere}
+.bk-top{padding-right:1.4em}
+.bk-min{position:absolute;top:.2em;right:.2em;z-index:2;width:2.1em;height:2.1em;display:grid;place-items:center;font:700 1.1em/1 Fredoka,sans-serif;color:var(--ink);cursor:pointer;background:var(--sun);border:.13em solid var(--ink);border-radius:50%;box-shadow:0 .15em 0 var(--ink)}
+.bk-min:active,.bk-bb:active{transform:translateY(.15em)}
+.bk-bar{position:fixed;left:50%;top:0;z-index:7;--by:-150%;display:flex;gap:.6em;padding:.9em .9em .8em;background:repeating-linear-gradient(90deg,#d9a566 0 .5em,#cb9556 .5em 1em);border:.16em solid var(--ink);border-top:0;border-radius:0 0 1.2em 1.2em;box-shadow:0 .3em 0 var(--ink),0 .8em 1.4em rgba(20,49,92,.4);transform:translate3d(calc(-50% + var(--px)*-10px),calc(var(--py)*-5px + var(--by)),0);visibility:hidden;transition:transform .7s cubic-bezier(.5,-.2,.3,1.3),visibility 0s .7s}
+#welcome.min .bk-bar{--by:0%;visibility:visible;transition:transform .7s .25s cubic-bezier(.3,1.5,.5,1),visibility 0s}
+.bk-bb{min-height:2.6em;padding:.3em 1em;font:700 1em Fredoka,sans-serif;color:var(--ink);cursor:pointer;background:#fff8e8;border:.14em solid var(--ink);border-radius:999px;box-shadow:0 .2em 0 var(--ink)}.bk-bb.go{background:var(--orange)}
+
+/* ===== v4: panel sambutan profesional bertema Ruang BK ===== */
+#welcome{padding-top:2.6em}
+.bk-card{width:min(94vw,46em);padding:.4em;transform-origin:50% -2.6em}
+.bk-card:before,.bk-card:after{height:2.8em}
+.bk-in{padding:0;overflow:hidden;border-radius:.85em;background:#fffaf0;text-align:left}
+.bk-band{padding:.5em 3em .5em 1.2em;font:700 .85em Fredoka,sans-serif;letter-spacing:.03em;color:#fff;background:linear-gradient(#2f9e92,#25877c);border-bottom:.14em solid var(--ink)}
+.bk-min{top:.5em;right:.5em;width:1.9em;height:1.9em;font-size:1em}
+.bk-main{display:grid;grid-template-columns:1.1fr 1fr;gap:1.1em 1.5em;align-items:center;padding:1em 1.3em .8em}
+.bk-hd{display:flex;align-items:center;gap:.9em}
+.bk-logo{width:4em;height:4em}
+.bk-card h2{font:700 min(2.1em,8vw)/1.05 Fredoka,"Trebuchet MS",sans-serif;text-shadow:none}
+.bk-n{font:700 1em Fredoka,sans-serif;color:var(--blue)}
+.bk-g{margin:.8em 0 .9em;font-size:.9em;line-height:1.4;color:#35507a}
+.bk-act{display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-start;gap:.7em}
+.bk-b{font-size:1.1em;min-height:2.6em}
+.bk-free{padding:.3em .8em;font:700 .8em Fredoka,sans-serif;background:#e3f6ec;border:.1em solid #2f9e92;border-radius:999px;box-shadow:none}
+.bk-tiles{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.55em}
+.bk-tiles li{display:flex;align-items:center;gap:.5em;padding:.55em .6em;font:700 .8em/1.15 Nunito,sans-serif;background:#fff;border:.1em solid var(--ink);border-radius:.6em;box-shadow:0 .15em 0 rgba(20,49,92,.22)}
+.bk-tiles li:nth-child(1){border-left:.45em solid #ff7aa8}.bk-tiles li:nth-child(2){border-left:.45em solid #1f6fd0}.bk-tiles li:nth-child(3){border-left:.45em solid #ffd23f}.bk-tiles li:nth-child(4){border-left:.45em solid #4cc36b}
+.bk-tiles i{font-style:normal;font-size:1.5em}
+.bk-ft{display:flex;flex-wrap:wrap;justify-content:center;gap:.4em 1.4em;padding:.6em 1em;font-size:.78em;background:#e9f7f3;border-top:.1em solid rgba(20,49,92,.25)}
+@media(max-width:700px){.bk-main{grid-template-columns:1fr}.bk-act{justify-content:center}.bk-b{width:100%}}
+@media(max-width:700px) and (max-height:759px){.bk-tiles{display:none}}
+@media(max-height:520px){.bk-tiles,.bk-g{display:none}.bk-main{grid-template-columns:1fr}}
